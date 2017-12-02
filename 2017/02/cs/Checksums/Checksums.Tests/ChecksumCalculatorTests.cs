@@ -12,25 +12,28 @@ namespace Checksums.Tests
     [TestFixture]
     public class ChecksumCalculatorTests
     {
-        [Test]
-        public void TestPart1Problem()
+        [TestCase("Checksums.Tests.TestData1Problem.txt", 18)]
+        [TestCase("Checksums.Tests.TestDataSolution.txt", 45351)]
+        public void TestPart1Problem(string dataFile, int expected)
         {
             var sut = new ChecksumCalculator();
 
-            var actual = sut.CalculatePart1(TestFixture("Checksums.Tests.TestData1Problem.txt"));
+            var actual = sut.CalculatePart1(TestFixture(dataFile));
 
-            Assert.That(actual, Is.EqualTo(18));
+            Assert.That(actual, Is.EqualTo(expected));
         }
-
-        [Test]
-        public void TestPart1Solution()
+        
+        [TestCase("Checksums.Tests.TestData2Problem.txt", 9)]
+        [TestCase("Checksums.Tests.TestDataSolution.txt", 275)]
+        public void TestPart2Problem(string dataFile, int expected)
         {
             var sut = new ChecksumCalculator();
 
-            var actual = sut.CalculatePart1(TestFixture("Checksums.Tests.TestData1Solution.txt"));
+            var actual = sut.CalculatePart2(TestFixture(dataFile));
 
-            Assert.That(actual, Is.EqualTo(45351));
+            Assert.That(actual, Is.EqualTo(expected));
         }
+
 
         private static List<List<int>> TestFixture(string inputFileName)
         {
