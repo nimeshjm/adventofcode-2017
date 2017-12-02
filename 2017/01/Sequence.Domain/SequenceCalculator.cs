@@ -25,18 +25,11 @@ namespace Sequence.Domain
 
         public int CalculateHalfway(string sequence)
         {
-            var ints = new List<int>();
-
             var enumerable = sequence.ToCharArray().Select(char.GetNumericValue).Select(Convert.ToInt32).ToList();
-
             var delta = sequence.Length / 2;
-            for (var i = 0; i < enumerable.Count; i++)
-            {
-                if (enumerable[i] == enumerable[(delta + i) % enumerable.Count])
-                {
-                    ints.Add(enumerable[i]);
-                }
-            }
+            var count = enumerable.Count;
+
+            var ints = enumerable.Where((t, i) => t == enumerable[(delta + i) % count]).ToList();
 
             return ints.Sum();
         }
