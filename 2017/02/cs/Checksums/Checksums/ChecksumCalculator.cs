@@ -12,7 +12,11 @@ namespace Checksums.Domain
 
         public int CalculatePart2(List<List<int>> matrix)
         {
-            return matrix.Sum(row => row.Select((item, index) => row.Skip(index + 1).Sum(i => item % i == 0 ? item / i : (i % item == 0 ? i / item : 0))).Sum());
+            return matrix.Sum(
+                row => row.Select(
+                    (item, index) => row.Skip(index + 1)
+                                        .Sum(i => item % i == 0 ? item / i : (i % item == 0 ? i / item : 0)))
+                    .Sum());
         }
     }
 }
