@@ -13,17 +13,28 @@ namespace Passphrases.Tests
     public class PassphraseValidatorTests
     {
         [TestCase("Passphrases.Tests.TestData1Problem.txt", 2)]
-        [TestCase("Passphrases.Tests.TestData1Solution.txt", 455)]
+        [TestCase("Passphrases.Tests.TestDataSolution.txt", 455)]
         public void Test1(string datafile, int expected)
         {
             var sut = new PassphraseValidator();
 
             var testFixture = TestFixture(datafile);
-            var actual = testFixture.Count(sut.IsValid);
+            var actual = testFixture.Count(sut.IsValidPart1);
 
             Assert.That(actual, Is.EqualTo(expected));
         }
 
+        [TestCase("Passphrases.Tests.TestData2Problem.txt", 3)]
+        [TestCase("Passphrases.Tests.TestDataSolution.txt", 186)]
+        public void Test2(string datafile, int expected)
+        {
+            var sut = new PassphraseValidator();
+
+            var testFixture = TestFixture(datafile);
+            var actual = testFixture.Count(sut.IsValidPart2);
+            
+            Assert.That(actual, Is.EqualTo(expected));
+        }
 
         private static List<List<string>> TestFixture(string inputFileName)
         {
