@@ -19,5 +19,25 @@ namespace Manhattan.Tests
 
             Assert.That(actual, Is.EqualTo(expected));
         }
+
+        [TestCase(1, 1)]
+        [TestCase(2, 1)]
+        [TestCase(3, 2)]
+        [TestCase(4, 4)]
+        [TestCase(5, 5)]
+        [TestCase(6, 10)]
+        [TestCase(7, 11)]
+        [TestCase(8, 23)]
+        [TestCase(9, 25)]
+        [TestCase(10, 26)]
+        [TestCase(11, 54)]
+        public void Test2(int index, int expected)
+        {
+            var sut = new DistanceCalculator();
+
+            var actual = sut.CalculateSpiralOfSumsOfPrecendingTerms(index);
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
     }
 }
