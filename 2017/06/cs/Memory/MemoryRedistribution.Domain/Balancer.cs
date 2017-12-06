@@ -24,7 +24,7 @@ namespace MemoryRedistribution.Domain
                 }
             }
 
-            return state.Count;
+            return part==1 ? state.Count : state.Count - state.IndexOf(state.First(s=>s.SequenceEqual(bankCount)));
         }
     }
 }
