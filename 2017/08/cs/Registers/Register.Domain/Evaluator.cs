@@ -20,8 +20,8 @@ namespace Register.Domain
         {
             var source = ReadLines(fileName, Encoding.UTF8).ToList();
             var variables = source.Select(s => s.First()).Distinct().Aggregate("", (accum, next) => $"{accum}{next}, ", s => s.Remove(s.Length - 2));
-            var conditions = source.Select(s => "if (" + string.Join(" ", s.Skip(4)) + ")");
-            var statements = source.Select(x => $"{x.First()} {GetOperator(x.ElementAt(1))} {x.ElementAt(2)};");
+            var conditions = source.Select(s => "if (" + string.Join(" ", s.Skip(4)) + ")").ToList();
+            var statements = source.Select(x => $"{x.First()} {GetOperator(x.ElementAt(1))} {x.ElementAt(2)}; max = Math.Max(max, {x.First()});").ToList();
 
             var code = @"
             using System;
@@ -30,17 +30,27 @@ namespace Register.Domain
             public class Advent
             {
                 int " + variables + @";
- 
+                int max = 0;
+
                 public int Part1() 
                 {
                     " + string.Join(string.Empty, conditions.Zip(statements, (x, y) => $"{x} {y}{Environment.NewLine}\t\t\t")) + @"
                     return new [] { " + variables + @" }.Max();
                 }
+ 
+                public int Part2() 
+                {
+                    " + string.Join(string.Empty, conditions.Zip(statements, (x, y) => $"{x} {y}{Environment.NewLine}\t\t\t")) + @"
+                    return max;
+                }
 
             }";
 
+            // Console.WriteLine(code);
             CSharpScriptEngine.Execute(code);
-            CSharpScriptEngine.Execute("Console.WriteLine(new Advent().Part1());");
+            CSharpScriptEngine.Execute("var advent = new Advent();");
+            CSharpScriptEngine.Execute("Console.WriteLine(advent.Part1());");
+            CSharpScriptEngine.Execute("Console.WriteLine(advent.Part2());");
 
             return 0;
         }
