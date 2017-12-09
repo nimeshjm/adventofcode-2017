@@ -21,6 +21,15 @@ namespace Programs.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase("Programs.Tests.TestData1Problem.txt", 243)]
+        [TestCase("Programs.Tests.TestDataSolution.txt", 0)]
+        public void Test2(string datafile, int expected)
+        {
+            var sut = new Tower.Programs();
+            var actual = sut.FindWeight(TestFixture(datafile));
+            Assert.AreEqual(expected, actual);
+        }
+
         private static List<List<string>> TestFixture(string inputFileName)
         {
             var lines = ReadLines(() => Assembly.GetExecutingAssembly().GetManifestResourceStream(inputFileName), Encoding.UTF8);
