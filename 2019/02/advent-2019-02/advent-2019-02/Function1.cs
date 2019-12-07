@@ -21,10 +21,10 @@ namespace advent_2019_02
 
             long i = 0;
             while(i < values.Length && values[i] != 99) {
-            
-                values[values[i + 3]] = values[i] == 1 ? values[values[i + 1]] + values[values[i + 2]] : values[values[i + 1]] * values[values[i + 2]];
 
-                log.LogInformation($"opcode: {values[i]}");
+                values[values[i + 3]] = values[i] == 1 
+                    ? values[values[i + 1]] + values[values[i + 2]] 
+                    : values[values[i + 1]] * values[values[i + 2]];
 
                 i += 4;
             }
