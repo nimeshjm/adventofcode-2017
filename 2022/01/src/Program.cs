@@ -2267,5 +2267,4 @@ elfs.Sort();
 elfs.Reverse();
 
 Console.WriteLine(elfs.First());
-
-// Console.WriteLine(elfs.OrderByDescending(i=>i).First());
+Console.WriteLine(elfs.Take(3).Sum());
