@@ -1,6 +1,6 @@
 ﻿using System;
 
-String input = @"9057
+var input = @"9057
 8878
 2753
 7027
