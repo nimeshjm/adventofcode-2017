@@ -2263,4 +2263,9 @@ foreach (var item in stuff)
     }
 }
 
-Console.WriteLine(elfs.OrderByDescending(i=>i).First());
+elfs.Sort();
+elfs.Reverse();
+
+Console.WriteLine(elfs.First());
+
+// Console.WriteLine(elfs.OrderByDescending(i=>i).First());
